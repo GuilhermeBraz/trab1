@@ -39,19 +39,6 @@ O sistema do Servidor Distribuído será composto por:
 4. Os 2 sensores de temperatura / umidade (DHT22) estão conectados diretamete às portas **GPIO 20** e **GPIO 21** da placa Raspberry Pi do Servidor Distribuído;
 5. As lâmpadas, aparelhos de ar-condicionado e os diversos sensores estão ligados aos pinos da GPIO conforme a Tabela 1.
 
-### Lista de itens Saídas
-- 02 Lâmpadas
-- 01 Ar-condicionado
-- 01 Projetor
-- 01 Alarme (Buzzer)
-
-### Lista de itens Entradas
-- 01 Sensor de Porta
-- 01 Sensor de Janela
-- 01 Sensor de Presença
-- 01 Sensor de Fumaça
-- 02 Sensor de Contagem de Pessoas
-
 | Item                                              | Sigla | GPIO | Direção |
 |---------------------------------------------------|:------:|:----:|:-------:|
 | ***Configuração 01***                             |        |      |         |
