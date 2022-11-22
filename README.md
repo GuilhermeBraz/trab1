@@ -54,30 +54,32 @@ O sistema do Servidor Distribuído será composto por:
 
 | Item                                              | Sigla | GPIO | Direção |
 |---------------------------------------------------|:------:|:----:|:-------:|
-| ***Andar Terreo***                                |        |      |         |
-| Lâmpada 01 da Sala                                | L_01   |  04  | Saída   |
-| Lâmpada 02 da Sala                                | L_02   |  17  | Saída   |
-| Ar-Condicionado Terreo                            | AC     |  07  | Saída   |  
-| Projetor Multimídia                               | PR     |  07  | Saída   |  
-| Alarme (buzzer)                                   | AL_BZ  |  07  | Saída   |  
-| Sensor de Presença                                | SPres  |  26  | Entrada |
-| Sensor de Fumaça                                  | SFum   |  23  | Entrada |
-| Sensor de Janela T01                              | SJan   |  09  | Entrada |
-| Sensor de Janela T02                              | SPor   |  11  | Entrada |
-| Sensor de Contagem de Pessoas Entrada             | SC_IN  |  13  | Entrada |
-| Sensor de Contagem de Pessoas Saída               | SC_OUT |  19  | Entrada |
+| ***Configuração 01***                             |        |      |         |
+| Lâmpada 01 da Sala                                | L_01   |  18  | Saída   |
+| Lâmpada 02 da Sala                                | L_02   |  23  | Saída   |
+| Ar-Condicionado Terreo                            | AC     |  24  | Saída   |  
+| Projetor Multimídia                               | PR     |  25  | Saída   |  
+| Alarme (buzzer)                                   | AL_BZ  |  08  | Saída   |  
+| Sensor de Presença                                | SPres  |  07  | Entrada |
+| Sensor de Fumaça                                  | SFum   |  01  | Entrada |
+| Sensor de Janela T01                              | SJan   |  12  | Entrada |
+| Sensor de Janela T02                              | SPor   |  16  | Entrada |
+| Sensor de Contagem de Pessoas Entrada             | SC_IN  |  20  | Entrada |
+| Sensor de Contagem de Pessoas Saída               | SC_OUT |  21  | Entrada |
 | Sensor de Temperatura / Umidade DHT22             | DHT22  |  04  | 1-Wire  |  
-| ***Primeiro Andar***                              |        |      |         |
-| Lâmpada da Sala 101                               | LS_101 |  22  | Saída   |
-| Lâmpada da Sala 102                               | LS_102 |  25  | Saída   |
-| Lâmpadas do Corredor                              | LC_1   |  08  | Saída   |
-| Ar-Condicionado (1º Andar)                        | AC_1   |  12  | Saída   |
-| Sensor de Presença                                | SP_1   |  18  | Entrada |
-| Sensor de Fumaça                                  | SF_1   |  24  | Entrada |
-| Sensor de Janela 101                              | SJ_1   |  05  | Entrada |
-| Sensor de Janela 102                              | SJ_1   |  06  | Entrada |
-| Sensor de Contagem de Pessoas Entrando no Prédio  | SC_IN_2  |  02  | Entrada |
-| Sensor de Contagem de Pessoas Saindo do Prédio    | SC_OUT_2 |  03  | Entrada |
+| ***Configuração 02***                             |        |      |         |
+| Lâmpada 01 da Sala                                | L_01   |  26  | Saída   |
+| Lâmpada 02 da Sala                                | L_02   |  19  | Saída   |
+| Ar-Condicionado Terreo                            | AC     |  13  | Saída   |  
+| Projetor Multimídia                               | PR     |  06  | Saída   |  
+| Alarme (buzzer)                                   | AL_BZ  |  05  | Saída   |  
+| Sensor de Presença                                | SPres  |  00  | Entrada |
+| Sensor de Fumaça                                  | SFum   |  11  | Entrada |
+| Sensor de Janela T01                              | SJan   |  09  | Entrada |
+| Sensor de Janela T02                              | SPor   |  10  | Entrada |
+| Sensor de Contagem de Pessoas Entrada             | SC_IN  |  22  | Entrada |
+| Sensor de Contagem de Pessoas Saída               | SC_OUT |  27  | Entrada |
+| Sensor de Temperatura / Umidade DHT22             | DHT22  |  18  | 1-Wire  | 
 
 ## 4. Requisitos
 
