@@ -1,4 +1,4 @@
-# Trabalho 2 (2021-1)
+# Trabalho 2 (2022-2)
 
 Trabalho 1 da disciplina de Fundamentos de Sistemas Embarcados (2022/2)
 
@@ -36,7 +36,7 @@ O sistema do Servidor Distribuído será composto por:
 1. Os servidores distribuídos deverão se comunicar com o servidor central através do Protocolo TCP/IP (O formato das mensagens ficam à cargo do aluno. A sugestão é o uso do formato JSON);
 2. Cada instância do servidor distribuído (uma por andar) deve rodar em um processo paralelo em portas distintas); 
 3. O alarme do servidor Central deverá ser acionado indicando na tela do sistema que o mesmo está acionado;
-4. Os 2 sensores de temperatura / umidade (DHT22) estão conectados diretamete às portas **GPIO 20** e **GPIO 21** da placa Raspberry Pi do Servidor Distribuído;
+4. O sensores de temperatura / umidade (DHT22) estão conectados diretamete à porta GPIO e da placa Raspberry Pi do Servidor Distribuído (o número do pino está detalhado na tabela);
 5. As lâmpadas, aparelhos de ar-condicionado e os diversos sensores estão ligados aos pinos da GPIO conforme a Tabela 1.
 
 | Item                                              | Sigla | GPIO | Direção |
@@ -44,7 +44,7 @@ O sistema do Servidor Distribuído será composto por:
 | ***Configuração 01***                             |        |      |         |
 | Lâmpada 01 da Sala                                | L_01   |  18  | Saída   |
 | Lâmpada 02 da Sala                                | L_02   |  23  | Saída   |
-| Ar-Condicionado Terreo                            | AC     |  24  | Saída   |  
+| Ar-Condicionado                                   | AC     |  24  | Saída   |  
 | Projetor Multimídia                               | PR     |  25  | Saída   |  
 | Alarme (buzzer)                                   | AL_BZ  |  08  | Saída   |  
 | Sensor de Presença                                | SPres  |  07  | Entrada |
@@ -57,7 +57,7 @@ O sistema do Servidor Distribuído será composto por:
 | ***Configuração 02***                             |        |      |         |
 | Lâmpada 01 da Sala                                | L_01   |  26  | Saída   |
 | Lâmpada 02 da Sala                                | L_02   |  19  | Saída   |
-| Ar-Condicionado Terreo                            | AC     |  13  | Saída   |  
+| Ar-Condicionado                                   | AC     |  13  | Saída   |  
 | Projetor Multimídia                               | PR     |  06  | Saída   |  
 | Alarme (buzzer)                                   | AL_BZ  |  05  | Saída   |  
 | Sensor de Presença                                | SPres  |  00  | Entrada |
@@ -82,11 +82,11 @@ O servidor central tem as seguintes responsabilidades:
     a. **Estado das entradas** (Sensores);  
     b. **Estado das Saídas** (lâmpadas, aparelhos de ar, etc.);   
     c. **Valor da temperatura e umidade** de cada sala a cada 1 segundo;  
-    d. **Contador de Ocupação** (Número de Pessoas) presentes no prédio como um todo (Mostrar a ocupação de cada sala e o número total de pessoas no prédio);  
+    d. **Contador de Ocupação** (Número de Pessoas) presentes no prédio como um todo e a ocupação individual de cada sala;  
 3. Prover **mecanismo na interface** para:  
     a. Acionar manualmente lâmpadas, aparelhos de ar-condicionado e projetores das salas;   
     b. **Acionamento de uma alarme** que, quando estiver ligado, deve tocar um som de alerta ao detectar presenças ou abertura de portas/janelas;  
-    c. **Acionamento de alarme de incêncio** que, ao detectar presença de fumaça a qualaquer momento deve soar o alarme;
+    c. **Acionamento de alarme de incêncio** que, ao detectar presença de fumaça a qualquer momento deve soar o alarme;
 4. Manter **log** (em arqvuio CSV) dos comandos acionados pelos usuários e do acionamento dos alarmes com data e hora e cada evento;  
 
 ### Servidores Distribuídos
@@ -98,7 +98,7 @@ Os servidores distribuídos tem as seguintes responsabilidades:
 2. Acionar **Lâmpadas, aparelhos de Ar-Condicionado e projetores** (mantendo informação sobre seu estado) conforme comandos do Servidor Central e retornando uma mensagem de confirmação para o mesmo sobre o sucesso ou não do acionamento;  
 3. Manter o estado dos **sensores de presença e abertura de portas/janelas** informando ao servidor central imediatamente (*mensagem push*) quando detectar o acionamento de qualquer um deles;  
 4. Manter o estado dos **sensores de fumaça** informando ao servidor central imediatamente (*mensagem push*) quando detectar o acionamento de qualquer um deles;  
-5. Efetuar a contagem de pessoas entrando e saindo do prédio e de cada andar para controle de ocupação;
+5. Efetuar a contagem de pessoas entrando e saindo da sala para controle de ocupação;
 6. Cada instância dos servidores distribuídos deve ser iniciada conforme o arquivo descrição JSON disponível neste repositório (Somente a porta local de cada servidor deve ser modificada no arquivo para cada aluno conforme a distribuição de portas disponibilizada para a turma).
 
 ### Geral
@@ -112,10 +112,10 @@ Os servidores distribuídos tem as seguintes responsabilidades:
 1. Os sensores de contagem de pessoas serão acionados por aprox. 200 ms (podendo variar em aprox. 100 ms para mais ou para menos). Neste caso, o sistema deverá detectar e contar corretamente somente uma entrada ou saída.
 2. O programa não poderá usar 100% da CPU em nenhum caso. Todas as threads/processos deverão funcionar com algum tipo de temporizador ou sleep para desocupar o processador em algum momento ou através de chamadas blocantes.
 3. O programa do Servidor Distribuído deve ser genérico para poder ser associado a qualquer sala do prédio e inicializado à partir de um arquivo de configuração (JSON), disponível neste repositório.
-4. Os sensores de presença nos corredores terão duas funções:  
-   a. Caso o alarme esteja ligado, deverão acionar o alarme;  
-   b. Caso o alrme esteja desligado, deverão acender as lâmpadas da sala por 15 segundos e depois apagar;
-5. Deve haver um meio de ligar e desligar todas as cargas do prédio ou por sala. (Liga/Desliga todo o prédio e Liga/Desliga todas as cargas -- Lampadas, projetores e aparelhos de Ar-Condicionado -- de uma determinada sala).
+4. Os **sensores de presença** nos corredores terão duas funções:  
+   a. Caso o **alarme** esteja **ligado**, deverão acionar o alarme;  
+   b. Caso o **alarme** esteja **desligado**, deverão **acender as duas lâmpadas da sala por 15 segundos** e depois apagar;
+5. Deve haver um meio de **ligar** _**todas as lâmpadas do prédio ou por sala**_. E de **desligar** **_todas as cargas do prédio ou por sala_** (Lampadas, projetores e aparelhos de Ar-Condicionado).
 6. Ao acionar o alarme, deve haver uma verificação se o sensores que ativam o alarme estão ligados. Neste caso, o sistema deve alertar o usuário e não permitir o acionamento do alarme enquanto todos os itens que o acionam estejam desativados.
 
 ## 6. Critérios de Avaliação
