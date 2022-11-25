@@ -81,7 +81,7 @@ O servidor central tem as seguintes responsabilidades:
 2. Prover uma **interface** que mantenham atualizadas as seguintes informações:  
     a. **Estado das entradas** (Sensores);  
     b. **Estado das Saídas** (lâmpadas, aparelhos de ar, etc.);   
-    c. **Valor da temperatura e umidade** de cada sala a cada 1 segundo;  
+    c. **Valor da temperatura e umidade** de cada sala a cada 2 segundos;  
     d. **Contador de Ocupação** (Número de Pessoas) presentes no prédio como um todo e a ocupação individual de cada sala;  
 3. Prover **mecanismo na interface** para:  
     a. Acionar manualmente lâmpadas, aparelhos de ar-condicionado e projetores das salas;   
@@ -94,7 +94,7 @@ O servidor central tem as seguintes responsabilidades:
 O código do Servidor Distribuído deve ser desenvolvido em **C**/**C++** ou **Python**;  
 
 Os servidores distribuídos tem as seguintes responsabilidades:  
-1. Manter os valores de **temperatura e umidade** atualizados a cada 1 segundo (Sendo requisitado pelo servidor central periodicamente ou enviado via mensagem *push*);  
+1. Manter os valores de **temperatura e umidade** atualizados a cada 2 segundos (Sendo requisitado pelo servidor central periodicamente ou enviado via mensagem *push*);  
 2. Acionar **Lâmpadas, aparelhos de Ar-Condicionado e projetores** (mantendo informação sobre seu estado) conforme comandos do Servidor Central e retornando uma mensagem de confirmação para o mesmo sobre o sucesso ou não do acionamento;  
 3. Manter o estado dos **sensores de presença e abertura de portas/janelas** informando ao servidor central imediatamente (*mensagem push*) quando detectar o acionamento de qualquer um deles;  
 4. Manter o estado dos **sensores de fumaça** informando ao servidor central imediatamente (*mensagem push*) quando detectar o acionamento de qualquer um deles;  
@@ -143,6 +143,26 @@ A avaliação será realizada seguindo os seguintes critérios:
 
 ## 7. Referências
 
-[Biblioteca BCM2835 - GPIO](http://www.airspayce.com/mikem/bcm2835/)
+### Bibliotecas em Python - GPIO
 
-[Exemplo de uso do DHT22](https://github.com/nebulx29/dht22)
+- gpiozero (https://gpiozero.readthedocs.io)
+- RPi.GPIO (https://pypi.org/project/RPi.GPIO/)
+
+A documentação da RPi.GPIO se encontra em
+https://sourceforge.net/p/raspberry-gpio-python/wiki/Examples/
+
+### Bibliotecas em C/C++ GPIO
+
+- WiringPi (http://wiringpi.com/) - Descontinuada
+- BCM2835 (http://www.airspayce.com/mikem/bcm2835/)
+- PiGPIO (http://abyz.me.uk/rpi/pigpio/index.html)
+- sysfs (https://elinux.org/RPi_GPIO_Code_Samples)
+
+### Lista de Exemplos em diversas linguagens - GPIO 
+
+Há um compilado de exemplos de acesso à GPIO em várias linguages de programação como C, C#, Ruby, Perl, Python, Java e Shell (https://elinux.org/RPi_GPIO_Code_Samples).
+
+### Sensor de Temperatura e Umidade (DHT22)
+
+- Python (https://pypi.org/project/pigpio-dht/)
+- Exemplo de uso do DHT22 em C (https://github.com/nebulx29/dht22)
